@@ -80,7 +80,7 @@ class HiDreamImageSingleTransformerBlock(nn.Module):
         adaln_input: Optional[torch.FloatTensor] = None,
         rope: torch.FloatTensor = None,
 
-    ) -> torch.FloatTensor:
+    ):
         wtype = image_tokens.dtype
         shift_msa_i, scale_msa_i, gate_msa_i, shift_mlp_i, scale_mlp_i, gate_mlp_i = \
             self.adaLN_modulation(adaln_input)[:,None].chunk(6, dim=-1)
@@ -153,7 +153,7 @@ class HiDreamImageTransformerBlock(nn.Module):
         text_tokens: Optional[torch.FloatTensor] = None,
         adaln_input: Optional[torch.FloatTensor] = None,
         rope: torch.FloatTensor = None,
-    ) -> torch.FloatTensor:
+    ):
         wtype = image_tokens.dtype
         shift_msa_i, scale_msa_i, gate_msa_i, shift_mlp_i, scale_mlp_i, gate_mlp_i, \
         shift_msa_t, scale_msa_t, gate_msa_t, shift_mlp_t, scale_mlp_t, gate_mlp_t = \
@@ -218,7 +218,7 @@ class HiDreamImageBlock(nn.Module):
         text_tokens: Optional[torch.FloatTensor] = None,
         adaln_input: torch.FloatTensor = None,
         rope: torch.FloatTensor = None,
-    ) -> torch.FloatTensor:
+    ):
         return self.block(
             image_tokens,
             image_tokens_masks,
