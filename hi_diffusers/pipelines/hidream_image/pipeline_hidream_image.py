@@ -195,11 +195,11 @@ class HiDreamImagePipeline(DiffusionPipeline, FromSingleFileMixin):
         self,
         tokenizer,
         text_encoder,
-        prompt: Union[str, List[str]],
-        num_images_per_prompt: int = 1,
-        max_sequence_length: int = 128,
-        device: Optional[torch.device] = None,
-        dtype: Optional[torch.dtype] = None,
+        prompt,
+        num_images_per_prompt,
+        max_sequence_length,
+        device,
+        dtype,
     ):
         device = device or self._execution_device
         dtype = dtype or text_encoder.dtype
@@ -237,11 +237,11 @@ class HiDreamImagePipeline(DiffusionPipeline, FromSingleFileMixin):
     
     def _get_llama3_prompt_embeds(
         self,
-        prompt: Union[str, List[str]] = None,
-        num_images_per_prompt: int = 1,
-        max_sequence_length: int = 128,
-        device: Optional[torch.device] = None,
-        dtype: Optional[torch.dtype] = None,
+        prompt,
+        num_images_per_prompt,
+        max_sequence_length,
+        device,
+        dtype,
     ):
         device = device or self._execution_device
         dtype = dtype or self.text_encoder_4.dtype
@@ -370,16 +370,16 @@ class HiDreamImagePipeline(DiffusionPipeline, FromSingleFileMixin):
 
     def _encode_prompt(
         self,
-        prompt: Union[str, List[str]],
-        prompt_2: Union[str, List[str]],
-        prompt_3: Union[str, List[str]],
-        prompt_4: Union[str, List[str]],
-        device: Optional[torch.device] = None,
-        dtype: Optional[torch.dtype] = None,
-        num_images_per_prompt: int = 1,
-        prompt_embeds: Optional[List[torch.FloatTensor]] = None,
-        pooled_prompt_embeds: Optional[torch.FloatTensor] = None,
-        max_sequence_length: int = 128,
+        prompt,
+        prompt_2,
+        prompt_3,
+        prompt_4,
+        device,
+        dtype,
+        num_images_per_prompt,
+        prompt_embeds,
+        pooled_prompt_embeds,
+        max_sequence_length,
     ):
         device = device or self._execution_device
         
@@ -511,20 +511,20 @@ class HiDreamImagePipeline(DiffusionPipeline, FromSingleFileMixin):
     @torch.no_grad()
     def __call__(
         self,
-        prompt: Union[str, List[str]] = None,
-        prompt_2: Optional[Union[str, List[str]]] = None,
-        prompt_3: Optional[Union[str, List[str]]] = None,
-        prompt_4: Optional[Union[str, List[str]]] = None,
-        height: Optional[int] = None,
-        width: Optional[int] = None,
-        num_inference_steps: int = 50,
-        sigmas: Optional[List[float]] = None,
-        guidance_scale: float = 5.0,
-        negative_prompt: Optional[Union[str, List[str]]] = None,
-        negative_prompt_2: Optional[Union[str, List[str]]] = None,
-        negative_prompt_3: Optional[Union[str, List[str]]] = None,
-        negative_prompt_4: Optional[Union[str, List[str]]] = None,
-        num_images_per_prompt: Optional[int] = 1,
+        prompt,
+        prompt_2,
+        prompt_3,
+        prompt_4,
+        height,
+        width,
+        num_inference_steps,
+        sigmas,
+        guidance_scale,
+        negative_prompt,
+        negative_prompt_2,
+        negative_prompt_3,
+        negative_prompt_4,
+        num_images_per_prompt,
         generator: Optional[Union[torch.Generator, List[torch.Generator]]] = None,
         latents: Optional[torch.FloatTensor] = None,
         prompt_embeds: Optional[torch.FloatTensor] = None,
